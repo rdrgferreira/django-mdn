@@ -15,12 +15,18 @@ def index(request):
 
     # The 'all()' is implied by default
     num_authors = Author.objects.count()
+    num_genres = Genre.objects.count()
+
+    # Books that contains the word 'milhão'
+    num_books_with_specific_word = Book.objects.filter(title__contains='milhão').count()
 
     context = {
         'num_books': num_books,
         'num_instances': num_instances,
         'num_instances_available': num_instances_available,
         'num_authors': num_authors,
+        'num_genres': num_genres,
+        'num_books_with_specific_word': num_books_with_specific_word,
     }
 
     # Render the HTML template index.html with the data in the context variable
