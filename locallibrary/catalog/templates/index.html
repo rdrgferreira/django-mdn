@@ -17,4 +17,6 @@
         <li><strong>Number of genres: </strong>{{ num_genres }}</li>
         <li><strong>Number of books that contains the word 'milhão' in title: </strong>{{ num_books_with_specific_word }}</li>
     </ul>
+
+    <p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}</p>
 {% endblock %}
