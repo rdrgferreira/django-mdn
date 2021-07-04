@@ -12,14 +12,16 @@ def index(request):
     num_instances = BookInstance.objects.all().count()
 
     # Available books (status = 'a')
-    num_instances_available = BookInstance.objects.filter(status__exact='a').count()
+    num_instances_available = BookInstance.objects.filter(
+        status__exact='a').count()
 
     # The 'all()' is implied by default
     num_authors = Author.objects.count()
     num_genres = Genre.objects.count()
 
     # Books that contains the word 'milhão'
-    num_books_with_specific_word = Book.objects.filter(title__contains='milhão').count()
+    num_books_with_specific_word = Book.objects.filter(
+        title__contains='milhão').count()
 
     context = {
         'num_books': num_books,
@@ -53,6 +55,13 @@ class BookListView(generic.ListView):
     #     return context
 
 
-
 class BookDetailView(generic.DetailView):
     model = Book
+
+
+class AuthorListView(generic.ListView):
+    model = Author
+
+
+class AuthorDetailView(generic.DetailView):
+    model = Author
