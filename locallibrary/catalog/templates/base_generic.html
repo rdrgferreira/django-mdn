@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Add addition CSS in static file -->
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <div class="container-fluid">
@@ -30,6 +30,10 @@
                         <li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
                     {% else %}
                         <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+                    {% endif %}
+                    <hr/>
+                    {% if perms.catalog.can_mark_returned %}
+                        <li><a href="{% url 'borrowed' %}">All borrowed</a></li>
                     {% endif %}
                 </ul>
             {% endblock %} 
