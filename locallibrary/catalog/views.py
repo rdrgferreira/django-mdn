@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import permission_required
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from catalog.models import Book, Author, BookInstance, Genre
-from catalog.forms import RenewBookForm, RenewBookModelForm
+from catalog.forms import RenewBookModelForm
 
 
 # Create your views here.
@@ -151,3 +151,20 @@ class AuthorDelete(PermissionRequiredMixin, DeleteView):
     model = Author
     success_url = reverse_lazy('authors')
     permission_required = ('can_mark_returned',)
+
+
+class BookCreate(PermissionRequiredMixin, CreateView):
+    model = Book
+    permission_required = ('can_mark_returned',)
+    fields = '__all__'
+
+
+class BookUpdate(PermissionRequiredMixin, UpdateView):
+    model = Book
+    permission_required = ('can_mark_returned',)
+    fields = '__all__'
+
+class BookDelete(PermissionRequiredMixin, UpdateView):
+    model = Book
+    permission_required = ('can_mark_returned',)
+    success_url = reverse_lazy('books')
